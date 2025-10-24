@@ -30,7 +30,8 @@ def agregar_producto(nombre, precio, stock):
     # Crea una NUEVA TUPLA con el precio y stock, y úsala para actualizar
     # el diccionario 'inventario' con el nombre del producto como CLAVE.
     
-    # [código va aquí]
+    nuevatupla = (precio, stock)
+    inventario[nombre] = nuevatupla
     
     print(f"\n✅ Producto '{nombre}' agregado/actualizado.")
 
