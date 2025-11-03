@@ -13,12 +13,12 @@ def calcular_promedio(calificaciones):
     for nota in calificaciones:
         suma = suma + nota
 
-    promedio = suma / len(notas)
+    promedio = suma / len(calificaciones)
     return promedio
 
 def main():
     calificaciones = [8.5, 9.0, 7.5, 10, 6.0]
-    promedio = calcular_promedio(calificacion)
-    print("El promedio de las calificaciones es: " + promedio)
+    promedio = calcular_promedio(calificaciones=calificaciones)
+    print("El promedio de las calificaciones es: " + str(promedio))
 
 main()

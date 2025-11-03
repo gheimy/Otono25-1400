@@ -7,12 +7,9 @@ def mostrar_menu():
     print("3. Salir")
 
 def calcular_promedio(lista_notas):
-    if len(lista_notas) == 0:
-        return None
-    suma = 0
-    for nota in lista_notas:
-        suma += nota
-    return suma / len(lista_notas)
+    if not lista_notas:
+        return 0
+    return sum(lista_notas) / len(lista_notas)
 
 def main():
     estudiantes = []
@@ -24,30 +21,46 @@ def main():
         if opcion == "1":
             nombre = input("Nombre del estudiante: ")
             notas = []
+
             for i in range(3):
-                nota = float(input(f"Ingrese la nota {i+1}: "))
-                notas.append(nota)
+                while True:
+                    try:
+                        nota = float(input(f"Ingrese la nota {i+1}: "))
+                        if 0 <= nota <= 10:
+                            notas.append(nota)
+                            break
+                        else:
+                            print("⚠️ La nota debe estar entre 0 y 10.")
+                    except ValueError:
+                        print("⚠️ Ingresa un número válido.")
 
             promedio = calcular_promedio(notas)
             aprobado = promedio >= 6.0
+
             estudiante = {
                 "nombre": nombre,
                 "notas": notas,
                 "promedio": promedio,
                 "aprobado": aprobado
             }
+
             estudiantes.append(estudiante)
-            print(f"\nEstudiante {nombre} agregado correctamente.")
+            print(f"\n✅ Estudiante {nombre} agregado correctamente.\n")
 
         elif opcion == "2":
-            print("\n=== LISTA DE ESTUDIANTES ===")
-            for est in estudiantes:
-                estado = "Aprobado" if est["aprobado"] else "Reprobado"
-                print(f"{est['nombre']} - Promedio: {est['promedio']:.2f} - {estado}")
+            if not estudiantes:
+                print("\nNo hay estudiantes registrados aún.")
+            else:
+                print("\n=== LISTA DE ESTUDIANTES ===")
+                for est in estudiantes:
+                    estado = "Aprobado ✅" if est["aprobado"] else "Reprobado ❌"
+                    print(f"{est['nombre']:<15} | Promedio: {est['promedio']:.2f} | {estado}")
+
         elif opcion == "3":
-            print("¡Hasta luego!")
+            print("👋 ¡Hasta luego!")
             break
+
         else:
-            print("Opción no válida. Intenta de nuevo.")
+            print("⚠️ Opción no válida. Intenta de nuevo.")
 
 main()
