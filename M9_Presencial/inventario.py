@@ -1,12 +1,6 @@
 # --- Base de datos de Inventario --- Trabajo entre parejas ---
-
-## Lee el README. Completa el codigo. Responde las preguntas. 
-## Submite una captura de pantalla, que funciona tu codigo como se espera. 
-
-# El diccionario principal: la clave es el nombre del producto (string),
-# y el valor es una tupla (precio_unitario, cantidad_en_stock).
-
-
+# Este programa gestiona un inventario de productos utilizando un diccionario.
+# Cada producto se almacena como una clave en el diccionario, con su valor
 inventario = {
     "Laptop": (1200.00, 15),
     "Mouse Inalámbrico": (25.50, 40),
@@ -20,42 +14,29 @@ def mostrar_inventario():
     print(f"{'PRODUCTO':<20}{'PRECIO':>10}{'STOCK':>10}")
     print("-" * 40)
     for nombre, detalles in inventario.items():
-        precio, stock = detalles  # Desempaquetado de la tupla
+        precio, stock = detalles
         print(f"{nombre:<20}${precio:>9.2f}{stock:>10}")
     print("-------------------------")
 
 def agregar_producto(nombre, precio, stock):
     """Agrega un nuevo producto o actualiza el stock/precio de uno existente."""
-    # TODO 1: Añadir o Actualizar Producto
-    # Crea una NUEVA TUPLA con el precio y stock, y úsala para actualizar
-    # el diccionario 'inventario' con el nombre del producto como CLAVE.
-    
-    nuevatupla = (precio, stock)
-    inventario[nombre] = nuevatupla
-    
+    nueva_tupla = (precio, stock)
+    inventario[nombre] = nueva_tupla
     print(f"\n✅ Producto '{nombre}' agregado/actualizado.")
 
 def buscar_precio(nombre):
     """Busca y retorna el precio unitario de un producto."""
-    # TODO 2: Buscar Precio
-    # Intenta obtener el valor asociado a la clave 'nombre' del diccionario.
-    # Si la clave existe, desempaqueta la tupla para obtener el precio
-    # (el primer elemento) y lo retorna. Si no existe, retorna None.
-    
-    # [Tu código va aquí]
-    
-    pass # Reemplaza esta línea
+    if nombre in inventario:
+        precio, _ = inventario[nombre]     # Solo usamos el precio, ignoramos el stock
+        return precio
+    else:
+        return None                        # Retorna None si no existe
 
 def valor_total_inventario():
     """Calcula el valor monetario total de todos los productos en stock."""
     valor_total = 0.0
-    for detalles in inventario.values():
-        # TODO 3: Calcular Valor Total
-        # Desempaqueta la tupla 'detalles' para obtener el precio y el stock.
-        # Multiplica el precio por el stock y suma el resultado a 'valor_total'.
-        
-        # [Tu código va aquí]
-        
+    for precio, stock in inventario.values():
+        valor_total += precio * stock
     return valor_total
 
 # --- Pruebas del Programa ---
@@ -63,16 +44,22 @@ def valor_total_inventario():
 # 1. Mostrar el inventario inicial
 mostrar_inventario()
 
-# 2. Agregar un nuevo producto (llamada a TODO 1)
+# 2. Agregar un nuevo producto
 agregar_producto("Webcam HD", 49.99, 30)
 
-# 3. Mostrar inventario después de la adición
+# 3. Mostrar inventario actualizado
 mostrar_inventario()
 
-# 4. Buscar el precio de un producto (llamada a TODO 2)
+# 4. Buscar el precio de un producto
 precio_mouse = buscar_precio("Mouse Inalámbrico")
-print(f"\n Precio del Mouse Inalámbrico: ${precio_mouse:.2f}")
 
-# 5. Calcular el valor total (llamada a TODO 3)
+if precio_mouse is not None:
+    print(f"\nPrecio del Mouse Inalámbrico: ${precio_mouse:.2f}")
+else:
+    print("\nProducto 'Mouse Inalámbrico' no encontrado en el inventario.")
+
+# 5. Calcular el valor total del inventario
 total = valor_total_inventario()
-print(f"\n Valor total estimado de todo el inventario: ${total:,.2f}")
+print(f"\nValor total estimado de todo el inventario: ${total:,.2f}")
+
+# --- Fin del programa ---
