@@ -10,7 +10,7 @@ Puedes probar tus funciones en la sección "if __name__ == '__main__'".
 # EJERCICIO 1: Tuplas no hashables
 # ============================
 
-def tupla_no_hashable():
+def tupla_no_hashable():  
     """
     Crea una tupla que contiene listas como elementos. Intenta usarla como clave en un diccionario.
     """
