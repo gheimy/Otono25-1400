@@ -18,12 +18,15 @@ def tupla_no_hashable():
     list1 = [4, 5]
     t = (list0, list1)
 
-    # TODO: Añade el número 6 al final de la segunda lista (list1) usando t
-    # Resultado esperado: ([1, 2, 3], [4, 5, 6])
+    # Añadir el número 6 a la segunda lista usando la tupla
+    t[1].append(6)
+    print("Tupla modificada:", t)
 
-    # TODO: Intenta usar la tupla t como clave en un diccionario y captura el error con try-except
-    # Debes imprimir un mensaje que diga que no se puede usar como clave si ocurre un TypeError
-    pass
+    # Intentar usarla como clave en un diccionario
+    try:
+        dic = {t: "valor"}
+    except TypeError:
+        print("No se puede usar una tupla con listas como clave en un diccionario.")
 
 
 # ============================
@@ -39,19 +42,20 @@ def shift_word(word, shift):
     shift_word("alegria", 7) -> "alegre"
     shift_word("melon", 16) -> "al cubo"
     """
-    # TODO: Implementa el cifrado César aquí
-    # Tip: Usa letter_map y operador % para hacer el desplazamiento circular
     letters = 'abcdefghijklmnopqrstuvwxyzáéíóúñ '
     letter_map = dict(zip(letters, range(len(letters))))
     reverse_map = dict(zip(range(len(letters)), letters))
+
     result = []
 
-    # Recorre cada letra y aplícale el desplazamiento
     for letter in word:
-        # TODO: Maneja letras no reconocidas (espacios, tildes, etc.)
-        pass
+        if letter in letter_map:
+            new_pos = (letter_map[letter] + shift) % len(letters)
+            result.append(reverse_map[new_pos])
+        else:
+            # Si es carácter no válido, lo dejamos igual
+            result.append(letter)
 
-    # Une la lista resultante en una cadena
     return ''.join(result)
 
 
@@ -63,9 +67,19 @@ def most_frequent_letters(texto):
     """
     Recibe una cadena y muestra las letras ordenadas por frecuencia (de mayor a menor).
     """
-    # TODO: Cuenta las letras ignorando espacios y ordena por frecuencia
-    # Tip: Usa value_counts() del ejercicio anterior si lo tienes
-    pass
+    texto = texto.replace(" ", "").lower()
+
+    conteo = {}
+    for letra in texto:
+        if letra.isalpha() or letra in "áéíóúñ":
+            conteo[letra] = conteo.get(letra, 0) + 1
+
+    # Ordenar por frecuencia
+    ordenadas = sorted(conteo.items(), key=lambda x: x[1], reverse=True)
+
+    print("Letras ordenadas por frecuencia:")
+    for letra, freq in ordenadas:
+        print(letra, "→", freq)
 
 
 # ============================
@@ -75,13 +89,17 @@ def most_frequent_letters(texto):
 def encontrar_anagramas(lista_palabras):
     """
     Dada una lista de palabras, imprime todos los grupos de palabras que son anagramas.
-
-    Ejemplo de salida:
-    ['deltas', 'desalt', 'lasted', 'salted', 'slated', 'staled']
-    ['retainers', 'ternaries']
     """
-    # TODO: Crea un diccionario que relacione la palabra ordenada con sus anagramas
-    pass
+    grupos = {}
+
+    for palabra in lista_palabras:
+        clave = ''.join(sorted(palabra))  # palabra ordenada
+        grupos.setdefault(clave, []).append(palabra)
+
+    # imprimir solo los grupos con más de 1 palabra
+    for grupo in grupos.values():
+        if len(grupo) > 1:
+            print(grupo)
 
 
 # ============================
@@ -91,12 +109,12 @@ def encontrar_anagramas(lista_palabras):
 def word_distance(word1, word2):
     """
     Devuelve el número de letras distintas entre dos palabras de igual longitud.
-
-    Ejemplo:
-    word_distance("casa", "cata") -> 1
     """
-    # TODO: Usa zip para comparar letra por letra y contar diferencias
-    pass
+    diferencias = 0
+    for a, b in zip(word1, word2):
+        if a != b:
+            diferencias += 1
+    return diferencias
 
 
 # ============================
@@ -105,16 +123,27 @@ def word_distance(word1, word2):
 
 def encontrar_metatesis(lista_palabras):
     """
-    Imprime todos los pares de palabras que son anagramas y difieren solo por una transposición (intercambio de dos letras).
-
-    Ejemplo:
-    ('converse', 'conserve')
+    Imprime todos los pares de palabras que son anagramas y difieren solo por una transposición.
     """
-    # TODO:
-    # 1. Encuentra anagramas usando el mismo enfoque del ejercicio anterior
-    # 2. Para cada par en cada grupo de anagramas, verifica si son pares de metátesis
-    #    (solo deben diferir en exactamente dos letras y ser del mismo largo)
-    pass
+    # Primero, agrupar anagramas
+    grupos = {}
+    for palabra in lista_palabras:
+        clave = ''.join(sorted(palabra))
+        grupos.setdefault(clave, []).append(palabra)
+
+    # Para cada grupo buscar pares que sean metátesis
+    for grupo in grupos.values():
+        if len(grupo) > 1:
+            for i in range(len(grupo)):
+                for j in range(i + 1, len(grupo)):
+                    p1, p2 = grupo[i], grupo[j]
+
+                    # Deben diferir exactamente en 2 posiciones
+                    dif = [(a, b) for a, b in zip(p1, p2) if a != b]
+
+                    if len(dif) == 2:
+                        print((p1, p2))
+
 
 
 # ============================
@@ -133,7 +162,9 @@ if __name__ == '__main__':
     most_frequent_letters("el veloz murciélago hindú comía feliz cardillo y kiwi")
 
     print("\nEJERCICIO 4: Anagramas en lista")
-    palabras = ['deltas', 'desalt', 'lasted', 'salted', 'slated', 'staled', 'retainers', 'ternaries', 'generating', 'greatening', 'resmelts', 'smelters', 'termless']
+    palabras = ['deltas', 'desalt', 'lasted', 'salted', 'slated', 'staled',
+                'retainers', 'ternaries', 'generating', 'greatening',
+                'resmelts', 'smelters', 'termless']
     encontrar_anagramas(palabras)
 
     print("\nEJERCICIO 5: Distancia entre palabras")
@@ -141,5 +172,6 @@ if __name__ == '__main__':
     print(word_distance("luz", "pez"))    # Esperado: 2
 
     print("\nEJERCICIO 6: Pares de metátesis")
-    palabras = ['conserve', 'converse', 'recostar', 'rescatro', 'resmelts', 'smelters', 'termless']
+    palabras = ['conserve', 'converse', 'recostar', 'rescatro',
+                'resmelts', 'smelters', 'termless']
     encontrar_metatesis(palabras)
