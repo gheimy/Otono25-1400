@@ -9,7 +9,7 @@ Preguntas clave:
 ¿Cómo va a interactuar el usuario con el programa?
 
 Entregable: Un párrafo (4-5 líneas) que describa claramente el problema y el propósito del programa.
-
+Mi proyecto es una aplicación que recomienda outfits según el clima del día. El programa ayuda al usuario a elegir ropa adecuada basándose en la temperatura, el clima general (soleado, lluvioso, nevado) y la sensación térmica. El objetivo es simplificar la decisión diaria de qué ponerse y evitar incomodidades por frío, calor o lluvia. El usuario ingresará información del clima y recibirá sugerencias personalizadas de prendas y accesorios.
 
 ---Semana 11: Diseño del Programa Final
 Actividad 1: Crear un diagrama de flujo que muestre el flujo de datos y decisiones (condicionales y bucles).

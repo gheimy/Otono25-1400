@@ -17,11 +17,10 @@
 # 5. Analiza el bloque de prueba para ver cómo un cambio en la cuenta
 #    bancaria de una copia superficial afecta al original, mientras que
 #    en una copia profunda no lo hace.
-
 # --------------------------------------------------------------------------
 
 # TODO: Paso 1. Importa el módulo `copy`.
-
+import copy
 
 
 class CuentaBancaria:
@@ -45,16 +44,13 @@ class Cliente:
     # TODO: Paso 2. Implementa el método de copia superficial.
     def copia_superficial(self):
         """Devuelve una copia superficial del cliente."""
-        
-        # return copy.copy(...)
-        
+        return copy.copy(self)
 
     # TODO: Paso 3. Implementa el método de copia profunda.
     def copia_profunda(self):
         """Devuelve una copia profunda del cliente."""
-        
-        # return copy.deepcopy(...)
-    
+        return copy.deepcopy(self)
+
 
 # --- Bloque para probar tu clase ---
 if __name__ == "__main__":
