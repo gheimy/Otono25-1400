@@ -1,4 +1,4 @@
-"""""
+"""
 ---Semana 12: Codigo
 Actividad: Comenzar a escribir el código Python basado en el pseudocódigo.
 
@@ -17,6 +17,22 @@ Documentar entradas, salidas esperadas y resultados reales.
 Entregables:
 Código parcial funcional.
 Lista con pruebas realizadas.
+
+1. Concepción e Inspiración
+La idea surgió porque elegir qué ropa usar cada día puede ser estresante, especialmente viviendo en Utah donde el clima cambia muy rápido. Quería un programa que recomiende outfits automáticamente según la temperatura y si llueve o nieva. La estética Cloudy nació porque me gustan los colores pastel, suaves y organizados.
+
+2. Público Objetivo y Diseño
+El proyecto está dirigido a personas jóvenes que quieren un asistente rápido para elegir outfits sin perder tiempo. El diseño del programa es simple e intuitivo: pocas opciones, menú claro, lenguaje amigable y posibilidad de mezclar estilo y clima. El público objetivo influyó en usar tonos pastel, nombres fáciles de entender y recomendaciones personalizadas.
+
+3. Proceso y Desarrollo
+Integré todos los requisitos del curso: uso de diccionarios para los tonos, listas para los outfits, funciones con valor de retorno, condicionales, bucles while y for, expresiones regulares para validar números y una clase llamada CloudyCloset. El proyecto se estructuró por módulos: detección de clima, recomendación automática, tendencias, maquillaje y modificación por color. Apliqué lo aprendido en el curso para cumplir cada especificación técnica.
+
+4. Calidad y Lecciones Aprendidas
+Realicé pruebas unitarias básicas y pruebas manuales con valores válidos e inválidos. Algunos bugs que encontré fueron: validación incorrecta de temperatura, color que no reemplazaba, y clima mal asignado en algunos límites. Todos fueron corregidos probando caso por caso. Aprendí a depurar con calma, organizar funciones, y combinar lógica con creatividad.
+
+5. Feedback y Proyección a Futuro
+Las personas que lo probaron dijeron que sería útil agregar más estilos, más colores y guardar preferencias del usuario. Si tuviera más tiempo, implementaría una interfaz gráfica (GUI), outfits por ocasión, recomendaciones por hora del día, y un sistema que aprenda del usuario con el tiempo.
+"""
 
 ---Semana 13: Finalización y Documentación
 Actividad: Completar el programa y asegurar que todo funcione correctamente.
