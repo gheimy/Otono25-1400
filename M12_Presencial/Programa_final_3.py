@@ -32,9 +32,8 @@ Realicé pruebas unitarias básicas y pruebas manuales con valores válidos e in
 
 5. Feedback y Proyección a Futuro
 Las personas que lo probaron dijeron que sería útil agregar más estilos, más colores y guardar preferencias del usuario. Si tuviera más tiempo, implementaría una interfaz gráfica (GUI), outfits por ocasión, recomendaciones por hora del día, y un sistema que aprenda del usuario con el tiempo.
-"""
-
----Semana 13: Finalización y Documentación
+""
+Semana 13: Finalización y Documentación
 Actividad: Completar el programa y asegurar que todo funcione correctamente.
 
 Comentar el código adecuadamente.
