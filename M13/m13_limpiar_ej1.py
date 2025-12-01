@@ -32,15 +32,15 @@ def formatear_nombre_usuario(nombre):
     nombre_limpio = nombre.strip()
 
     # TODO: Paso 2. Convierte la cadena a minúsculas.
-    nombre_final =  # Usa .lower() en la cadena ya limpia.
+    nombre_final = nombre_limpio.lower()
 
     # TODO: Paso 3. Comprueba si la cadena final contiene solo letras.
-    # if nombre_final.isalpha() ...:
-    # TODO: Paso 4. Si es válido, devuelve el nombre_final.
-    # return ...
-    # else:
-    # TODO: Paso 5. Si no es válido, devuelve un mensaje de error.
-    return "Error: el nombre de usuario solo puede contener letras."
+    if nombre_final.isalpha():
+        # TODO: Paso 4. Si es válido, devuelve el nombre_final.
+        return nombre_final
+    else:
+        # TODO: Paso 5. Si no es válido, devuelve un mensaje de error.
+        return "Error: el nombre de usuario solo puede contener letras."
 
 
 # --- Bloque para probar tu función ---
@@ -66,14 +66,27 @@ Entrada: '!' -> Salida: 'Error: el nombre de usuario solo puede contener letras.
 """
 # TODO Responde las siguientes preguntas:
 
-1. Porque es importante usar .strip() antes que .lower(). Que pasaria si los
- pones al reves?
-2. La función actual devuelve un mensaje de error general: "Error: el
- nombre de usuario solo puede contener letras." Si quisiéramos expandir
- la función para permitir números pero seguir previniendo símbolos
- (como !, @, #), ¿cómo modificarías el paso de validación actual
- (que usa .isalpha()), y cómo se vería un mensaje de error más específico
- en este caso?
-3. ¿Por qué falla el control de validación (.isalpha() devuelve False)
- una entrada como "Usario Con Espacio"?
+1. ¿Por qué es importante usar .strip() antes que .lower()? ¿Qué pasaría si los
+   ponemos al revés?
+
+   - Es importante usar `.strip()` primero porque elimina los espacios de los extremos.
+     Si aplicas `.lower()` antes, los espacios siguen ahí → no afecta el resultado,
+     pero después puede causar confusión en validaciones.
+     El orden correcto es:
+         primero limpiar → luego transformar.
+     Si se invierte, funcionaría, pero no sería una práctica correcta porque no
+     limpias la entrada antes de procesarla.
+
+2. La función actual devuelve un mensaje de error general.  
+   Si quisiéramos permitir números pero seguir prohibiendo símbolos, ¿cómo cambiaría?
+
+   - En vez de `.isalpha()`, usaríamos `.isalnum()` que permite letras y números.
+   - Nuevo mensaje de error:
+       "Error: el nombre solo puede contener letras y números, no símbolos."
+
+3. ¿Por qué falla ".isalpha()" en la entrada "Usuario Con Espacio"?
+
+   - Porque `.isalpha()` solo acepta letras.  
+   - El espacio `" "` NO es una letra → por eso devuelve False.
+   - También fallaría si hubiera números o símbolos.
 """
