@@ -66,3 +66,50 @@ nuevo_producto = {
 Cargar desde JSON (Deserialización):
 9. Usa la función json.load() para leer el contenido del archivo producto_nuevo.json y cargarlo de nuevo en una variable de Python llamada data_cargada.
 10. Imprime el Nombre y el Precio del producto cargado para verificar que la conversión fue exitosa.
+
+---
+
+# 📘 Desarrollo – Módulo 12 Presencial: Gestión de Registros
+
+## Parte 1: Lector y Gestor de Registros (mi_registro.txt)
+
+En la Parte 1, el programa crea el archivo **mi_registro.txt** usando el modo de escritura `'w'` y la función `open()` dentro de un bloque `with`.  
+Se escriben cuatro líneas con usuarios y ciudades:
+
+- Usuario: Ana – Madrid  
+- Usuario: Marleny – Barcelona  
+- Usuario: Sandra – Sevilla  
+- Usuario: Enrique – Valencia  
+
+Luego, el programa vuelve a abrir el archivo en modo lectura `'r'` y usa `readlines()` para cargar todas las líneas en una lista llamada `lineas_registro`.  
+Se recorre esa lista e imprime solo las líneas que contienen las palabras **"Madrid"** o **"Sevilla"`, cumpliendo con el filtro pedido.
+
+Después, se abre el archivo en modo anexar `'a'` y se añade una nueva línea:
+
+- Usuario: Elena – Bilbao  
+
+Finalmente, se vuelve a leer el archivo completo para confirmar que la nueva línea de Elena se agregó correctamente.
+
+---
+
+## Parte 2: Conversor de Datos (CSV y JSON)
+
+En la Parte 2 se trabaja con el archivo **inventario_productos.csv**, que contiene:
+
+- ID, Nombre, Precio, Stock  
+- 101, Monitor, 150.99, 25  
+- 102, Teclado, 35.50, 150  
+- 103, Raton, 18.00, 300  
+
+El programa usa `csv.reader` para leer el archivo y recorre cada fila, imprimiendo solo los productos cuyo **Stock es menor a 100**.  
+Con los datos actuales, se imprime únicamente el **Monitor**, que tiene stock 25.
+
+Luego se crea un diccionario de Python:
+
+```python
+{
+    "ID": 104,
+    "Nombre": "Webcam",
+    "Precio": 45.99,
+    "Stock": 50
+}
